@@ -1,0 +1,79 @@
+
+# the name of Camel
+camel:  
+  springboot:
+    name: fuseInitializer
+    # route-controller-supervise-enabled: true
+  component:
+    kafka: 
+      configuration: 
+          client-id: archetype-test
+          brokers: localhost:9092
+  health:
+    enabled: true
+    indicator:
+      enabled: true
+    check:
+      routes:
+        enabled: true
+server:
+  address: 0.0.0.0
+
+# to automatic shutdown the JVM after a period of time
+#camel.springboot.duration-max-seconds=60
+#camel.springboot.duration-max-messages=100
+
+# add for example: &repeatCount=5 to the timer endpoint to make Camel idle
+#camel.springboot.duration-max-idle-seconds=15
+#management.endpoints.web.exposure.include
+
+# expose actuator endpoint via HTTP
+management:
+  server:
+    port: 10001
+    address: 0.0.0.0
+  info:
+    camel:
+      enabled: true
+  endpoints:
+    hawtio:
+      enabled: true
+    jolokia: 
+      enabled: true
+    health: 
+      enabled = true
+    web:
+      exposure:
+        include: health,camelroutes,howtio,jolokia
+spring:
+  jmx:
+    enabled: true 
+hawtio:
+  authenticationEnabled: false
+
+# disable health defaults
+# management.health.defaults.enabled=false
+
+# camel.health.enabled=false
+# camel.health.indicator.enabled=true
+# server:
+#   ssl:
+#     enabled: true
+
+ssl:
+  secrets: 
+    path: ${REST_JAVA_DSL_SECRETS_PATH:src/main/resources/keystore}
+  trust-store: 
+    jks-file-name: ${REST_JAVA_DSL_TRUST_STORE_JKS_FILE:trust_store.jks}
+    password: ${REST_JAVA_DSL_TRUST_STORE_JKS_FILE_PASSWORD:jeqxqI6ECpo2Ju5KQFQA}
+  identity-store:
+    jks-file-name: ${REST_JAVA_DSL_IDENTITY_STORE_JKS_FILE:identity_store.jks}
+    password: ${REST_JAVA_DSL_IDENTITY_STORE_JKS_FILE_PASSWORD:qeFviXlfXWvSOmhZqQf7}
+
+
+
+# to configure logging levels
+#logging.level.org.springframework = INFO
+#logging.level.org.apache.camel.spring.boot = INFO
+#logging.level.org.apache.camel.impl = DEBUG
+#logging.level.sample.camel = DEBUG
