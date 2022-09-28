@@ -61,18 +61,6 @@ hawtio:
 #   ssl:
 #     enabled: true
 
-ssl:
-  secrets: 
-    path: ${REST_JAVA_DSL_SECRETS_PATH:src/main/resources/keystore}
-  trust-store: 
-    jks-file-name: ${REST_JAVA_DSL_TRUST_STORE_JKS_FILE:trust_store.jks}
-    password: ${REST_JAVA_DSL_TRUST_STORE_JKS_FILE_PASSWORD:jeqxqI6ECpo2Ju5KQFQA}
-  identity-store:
-    jks-file-name: ${REST_JAVA_DSL_IDENTITY_STORE_JKS_FILE:identity_store.jks}
-    password: ${REST_JAVA_DSL_IDENTITY_STORE_JKS_FILE_PASSWORD:qeFviXlfXWvSOmhZqQf7}
-
-
-
 # to configure logging levels
 #logging.level.org.springframework = INFO
 #logging.level.org.apache.camel.spring.boot = INFO
