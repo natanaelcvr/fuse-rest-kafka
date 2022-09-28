@@ -25,7 +25,7 @@ import java.io.IOException;
  * Error
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-28T09:15:31.377902-03:00[America/Sao_Paulo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-28T09:43:36.835188-03:00[America/Sao_Paulo]")
 public class Error {
   @SerializedName("code")
   private Integer code = null;

@@ -25,7 +25,7 @@ import java.io.IOException;
  * NewPet
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-28T09:15:31.377902-03:00[America/Sao_Paulo]")
+@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2022-09-28T09:43:36.835188-03:00[America/Sao_Paulo]")
 public class NewPet {
   @SerializedName("name")
   private String name = null;
