@@ -17,7 +17,7 @@ public final class FuseRoutes extends RouteBuilder {
      */
     public void configure() {
 
-        restConfiguration().component("undertow");
+        restConfiguration().component("undertow").port("8080");
 
         rest("/api")
             .get("/pets")

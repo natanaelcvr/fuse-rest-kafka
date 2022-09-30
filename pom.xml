@@ -53,10 +53,6 @@
     </dependency>
     <!-- <dependency>
       <groupId>org.apache.camel</groupId>
-      <artifactId>camel-servlet-starter</artifactId>
-    </dependency> -->
-    <!-- <dependency>
-      <groupId>org.apache.camel</groupId>
       <artifactId>camel-jackson-starter</artifactId>
     </dependency> -->
     <!-- Required dependency for HTTP component -->
@@ -92,18 +88,24 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  
+
   <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.jboss.redhat-fuse</groupId>
-          <artifactId>openshift-maven-plugin</artifactId>
-          <version>${fuse.bom.version}</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
+      <!-- display active profile in compile phase -->
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-help-plugin</artifactId>
+          <version>3.1.0</version>
+          <executions>
+              <execution>
+                  <id>show-profiles</id>
+                  <phase>compile</phase>
+                  <goals>
+                      <goal>active-profiles</goal>
+                  </goals>
+              </execution>
+          </executions>
+      </plugin>
       <!-- Core plugins -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -137,50 +139,79 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-restdsl-openapi-plugin</artifactId>
-        <version>3.17.0</version>
-        <executions>
-          <execution>
-            <id>generate-rest-endpoints</id>
-            <phase>generate-sources</phase>
-            <goals>
-              <goal>generate-with-dto</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <specificationUri>${project.basedir}/src/main/resources/openapi/openapi-spec.json</specificationUri>
-          <className>FuseRoutes</className>
-          <packageName>com.uscellular.service.route</packageName>
-          <modelPackage>com.uscellular.service.route.entity</modelPackage>
-          <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-          <modelOutput>./</modelOutput>
-        </configuration>
-      </plugin>
-      <plugin>
-				<groupId>org.jsonschema2pojo</groupId>
-				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
-				<version>1.1.2</version>
-				<executions>
-					<execution>
-						<id>generate-from-json-schema</id>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>generate</goal>
-						</goals>
-						<configuration>
-							<sourceDirectory>${project.basedir}/src/main/resources/jsonschema2pojo/NotificationEventRequestType.json</sourceDirectory>							
-							<targetPackage>com.uscellular.service.dto</targetPackage>
-							<outputDirectory>${project.basedir}/src/main/java</outputDirectory>
-              <includeHashcodeAndEquals>true</includeHashcodeAndEquals>
-              <includeToString>true</includeToString>
-              <annotationStyle>gson</annotationStyle>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
     </plugins>
-  </build> 
+  </build>
+
+  <profiles>
+    <profile>
+      <id>generate-code</id>
+      <properties>
+        <maven.test.skip>true</maven.test.skip>
+      </properties>
+      <build>
+        <plugins>
+            <!-- display active profile in compile phase -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-help-plugin</artifactId>
+                <version>3.1.0</version>
+                <executions>
+                    <execution>
+                        <id>show-profiles</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>active-profiles</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+              <groupId>org.apache.camel</groupId>
+              <artifactId>camel-restdsl-openapi-plugin</artifactId>
+              <version>3.17.0</version>
+              <executions>
+                <execution>
+                  <id>generate-rest-endpoints</id>
+                  <phase>generate-sources</phase>
+                  <goals>
+                    <goal>generate-with-dto</goal>
+                  </goals>
+                </execution>
+              </executions>
+              <configuration>
+                <specificationUri>${project.basedir}/src/main/resources/openapi/openapi-spec.json</specificationUri>
+                <className>FuseRoutes</className>
+                <packageName>com.uscellular.service.route</packageName>
+                <modelPackage>com.uscellular.service.route.entity</modelPackage>
+                <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                <modelOutput>./</modelOutput>
+              </configuration>
+            </plugin>
+            <plugin>
+              <groupId>org.jsonschema2pojo</groupId>
+              <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+              <version>1.1.2</version>
+              <executions>
+                <execution>
+                  <id>generate-from-json-schema</id>
+                  <phase>generate-sources</phase>
+                  <goals>
+                    <goal>generate</goal>
+                  </goals>
+                  <configuration>
+                    <sourceDirectory>${project.basedir}/src/main/resources/jsonschema2pojo/NotificationEventRequestType.json</sourceDirectory>							
+                    <targetPackage>com.uscellular.service.dto</targetPackage>
+                    <outputDirectory>${project.basedir}/src/main/java</outputDirectory>
+                    <includeHashcodeAndEquals>true</includeHashcodeAndEquals>
+                    <includeToString>true</includeToString>
+                    <annotationStyle>gson</annotationStyle>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+  
 </project>
