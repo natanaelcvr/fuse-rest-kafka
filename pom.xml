@@ -4,7 +4,7 @@
   <groupId>com.uscellular</groupId>
   <artifactId>fuse-starter</artifactId>
   <version>1.0.0</version>
-  <name>USCC :: Fuse :: REST :: Starter :: Health Check</name>
+  <name>:: USCC :: Fuse :: REST :: Starter ::</name>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -56,25 +56,31 @@
       <artifactId>camel-jackson-starter</artifactId>
     </dependency> -->
     <!-- Required dependency for HTTP component -->
-<!-- 		<dependency>
+		<dependency>
 			<groupId>org.apache.camel</groupId>
 			<artifactId>camel-http4-starter</artifactId>
-		</dependency> -->
+		</dependency>
     <!-- General dependencies-->
     <dependency>
-      <groupId>com.google.code.gson</groupId>
-      <artifactId>gson</artifactId>
-      <version>2.9.0.redhat-00001</version>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-gson-starter</artifactId>
     </dependency>
     <dependency>
       <groupId>io.swagger.core.v3</groupId>
       <artifactId>swagger-annotations</artifactId>
       <version>2.1.11.redhat-00001</version>
     </dependency>
-    <!-- kafka dependencies -->
+    <!-- json to pojo dependencies -->
     <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-kafka-starter</artifactId>
+      <groupId>org.jsonschema2pojo</groupId>
+      <artifactId>jsonschema2pojo-core</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+    <!-- Maven invoker -->
+    <dependency>
+      <groupId>org.apache.maven.shared</groupId>
+      <artifactId>maven-invoker</artifactId>
+      <version>3.2.0</version>
     </dependency>
     <!-- Test -->
     <dependency>

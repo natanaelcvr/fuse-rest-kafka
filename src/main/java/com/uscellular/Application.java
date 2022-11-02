@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
 
     /**
+     * 
      * A main method to start this application.
      */
     public static void main(String[] args) {
